@@ -56,14 +56,20 @@ class UnorderedList:
         current = self.head
         previous = None
         found = False
-        while not found:
+        while not found or current!=None:
             if current.getData() == item:
                 found = True
             else:
                 previous = current
                 current = current.getNext()
 
-        if previous == None:
+
+
+
+        if not found:
+            return  "item not present in the list"
+# we have a single node and we want to delete that
+        elif previous == None:
             self.head = current.getNext()
         else:
             previous.setNext(current.getNext())
