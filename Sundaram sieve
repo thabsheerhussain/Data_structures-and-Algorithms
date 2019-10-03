@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef unsigned long long ll;
+int main() {
+ ll n = 100000000LL;
+ ll m = n/2;
+ char *sieve = malloc(m);
+ 
+ for(ll i=0; i<m; i++)
+  sieve[i] = 1;
+ 
+ for(ll i=1; i<m; i++)
+  for(ll j=i; j<=(m-i)/(2*i+1); j++)
+   sieve[i+j+2*i*j] = 0;
+ 
+ ll s=1;
+ for(ll i=1; i<m; i++)
+  if(sieve[i]) s++;
+ 
+ printf("%llu", s);
+ return 0;
+}
