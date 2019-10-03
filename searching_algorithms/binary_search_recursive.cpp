@@ -1,40 +1,36 @@
-#include <bits/stdc++.h>
- using namespace std;
+#include <bits/stdc++.h> 
+using namespace std;
 
-int binarysearch(vector<int> &list, int f, int l, int search )
-{
-	if(l>=1)
-	{
-		int mid=(f+l)/2;
-		if(list[mid]==search)
-			return mid;
-		else if(list[mid]>search)
-			return binarysearch(list, f, mid-1, search);
+int binarySearch(vector<int>& arr, int l, int r, int q) 
+{ 
+	if (r>=l) 
+	{ 
+		int mid = l+(r-l)/2; 
+		if (arr[mid] == q) 
+			return mid; 
+		if (arr[mid] > q) 
+			return binarySearch(arr, l, mid-1, q); 
 		else
-			return binarysearch(list, mid+1, l, search);
-	}
-	return -1;
-}
+			return binarySearch(arr, mid+1, r, q); 
+	} 
+	return -1; 
+} 
 
-int main()
-{
+int main() 
+{ 
 	int n;
 	cin>>n;
 
 	vector<int> list(n);
-	for( int i=0  ; i<n ;  i++)
-	{
-		cin>>list[i];
-	}
-
+	for(int i = 0 ; i<n ; i++)
+	cin>>list[i];
+	
 	int query;
 	cin>>query;
-
-	int f=0, l=(n-1), r;
-	r = binarysearch(list, f, l, query);
-	if(r==-1)
-		cout<<query<<"Not found!"<<"\n";
+	
+	int result = binarySearch(list, 0, n-1, query); 
+	if(result==-1)
+		cout<<"Not Found"<<"\n";
 	else
-		cout<<query<<"Found at index "<<r<<"\n";
-}
-
+		cout<<"Present at index: "<<result<<"\n";
+} 
