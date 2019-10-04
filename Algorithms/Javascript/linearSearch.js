@@ -22,3 +22,6 @@ if (result === -1) {
   console.log(`Query value is present at index: ${result}`);
 }
 
+// Expected output:
+// Query value is present at index: 1
+
