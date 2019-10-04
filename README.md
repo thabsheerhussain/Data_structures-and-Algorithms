@@ -1,5 +1,9 @@
 # Data_structures-and-Algorithms
 
-This Repository Contains implementation of various algorithms in many languages.<br>
+This repository contains implementation of various algorithms in many languages.<br>
 
-You all are welcome to Contribute.
+You are all welcome to contribute.
+
+Please add whatever knowledge of data structures and algorithms you can.
+
+Thank you.
