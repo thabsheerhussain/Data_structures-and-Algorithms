@@ -40,3 +40,18 @@ class Graph:
 				if v not in visited:
 					visited.add(v)
 					queue.append(v)
+	
+	def dijkstra(self, start, end):
+		heap = [(0, start)]				# dist to start is 0
+		visited = set()
+		while heap:
+			(u_dist, u) = heapq.heappop(heap)	# Remove the closest vertex
+			if u not in visited:
+				visited.add(u)
+				if u == end:
+					return u_dist
+				for v, v_dist in self.graph[u]:	# Relax all neighbours from u
+					if v not in visited:
+						dist = u_dist + v_dist
+						heapq.heappush(heap, (dist, v))
+		return inf	# we cannot reach the target
