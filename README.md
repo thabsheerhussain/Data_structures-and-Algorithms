@@ -1,3 +1,5 @@
+[![Gitter](https://badges.gitter.im/OpenAlgos/community.svg)](https://gitter.im/OpenAlgos/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 # Data_structures-and-Algorithms
 
 This repository contains implementation of various algorithms in different Programming languages.<br>
