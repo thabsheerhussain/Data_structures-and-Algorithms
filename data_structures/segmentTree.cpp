@@ -1,27 +1,35 @@
-
+// C++ program to show segment tree operations like construction, query  
+// and update  
 #include <bits/stdc++.h>
 using namespace std;
 
 
+// A utility function to get the middle index from corner indexes
 int getMid(int s, int e) { return s + (e -s)/2; }
 
 
+/* A recursive function to get the sum of values in the given range  
+    of the array. The following are parameters for this function.  
+  */
 int getSumUtil(int *st, int ss, int se, int qs, int qe, int si)
 {
-
+// If segment of this node is a part of given range, then return  
+    // the sum of the segment  
 	if (qs <= ss && qe >= se)
 		return st[si];
 
-
+// If segment of this node is outside the given range  
 	if (se < qs || ss > qe)
 		return 0;
-
+ // If a part of this segment overlaps with the given range
 	int mid = getMid(ss, se);
 	return getSumUtil(st, ss, mid, qs, qe, 2*si+1) +
 		getSumUtil(st, mid+1, se, qs, qe, 2*si+2);
 }
 
 
+/* A recursive function to update the nodes which have the given  
+index in their range. The following are parameters  */
 void updateValueUtil(int *st, int ss, int se, int i, int diff, int si)
 {
 
@@ -37,6 +45,8 @@ void updateValueUtil(int *st, int ss, int se, int i, int diff, int si)
 		updateValueUtil(st, mid+1, se, i, diff, 2*si + 2);
 	}
 }
+// The function to update a value in input array and segment tree.  
+// It uses updateValueUtil() to update the value in segment tree  
 
 void updateValue(int arr[], int *st, int n, int i, int new_val)
 {
@@ -56,6 +66,8 @@ void updateValue(int arr[], int *st, int n, int i, int new_val)
 }
 
 
+// Return sum of elements in range from index qs (quey start)  
+// to qe (query end). It mainly uses getSumUtil()  
 int getSum(int *st, int n, int qs, int qe)
 {
 
@@ -67,6 +79,9 @@ int getSum(int *st, int n, int qs, int qe)
 
 	return getSumUtil(st, 0, n-1, qs, qe, 0);
 }
+ 
+// A recursive function that constructs Segment Tree for array[ss..se].  
+// si is index of current node in segment tree st
 
 int constructSTUtil(int arr[], int ss, int se, int *st, int si)
 {
@@ -85,7 +100,9 @@ int constructSTUtil(int arr[], int ss, int se, int *st, int si)
 	return st[si];
 }
 
-
+/* Function to construct segment tree from given array. This function  
+allocates memory for segment tree and calls constructSTUtil() to  
+fill the allocated memory */
 int *constructST(int arr[], int n)
 {
 
@@ -100,11 +117,10 @@ int *constructST(int arr[], int n)
 
 	constructSTUtil(arr, 0, n-1, st, 0);
 
-
 	return st;
 }
 
-
+// Driver program to test above functions  
 int main()
 {
 	int arr[] = {1, 3, 5, 7, 9, 11};
